@@ -224,7 +224,6 @@ namespace Shopping.Areas.Manage.Controllers
 
         #endregion
 
-
         #region 我的积分
         public ActionResult MyIntegral()
         {

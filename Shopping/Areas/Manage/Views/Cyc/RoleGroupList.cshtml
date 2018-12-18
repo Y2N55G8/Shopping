@@ -15,7 +15,7 @@
 <body>
     <div id="max">
         <button type="button" onclick="javascript:location.href='EditRoleGroup'">添加</button>
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>编号</th>
@@ -27,7 +27,10 @@
                 <tr v-for="(r,i) in roleList">
                     <td>{{r.RG_no}}</td>
                     <td>{{r.RG_name}}</td>
-                    <td>编辑|删除</td>
+                    <td>
+                    <a href="javascript:" @@click="update(r.RG_no)">编辑</a>|
+                    <a href="javascript:" @@click="remove(r.RG_no)">删除</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -46,6 +49,31 @@
                         vm.roleList = result;
                     }
                 })
+            }, methods: {
+                update(RG_no) {
+                    location.href = `EditRoleGroup?edit=${RG_no}`;
+                },
+                remove(RG_no) {
+                    $.ajax({
+                        url: "DeleteRoleGroups",
+                        type: "post",
+                        data: { RGid: RG_no },
+                        datatype: "json",
+                        success: function (result) {
+                            alert(result);
+
+
+                            $.ajax({
+                                url: "GetRoleGroups",
+                                type: "post",
+                                datatype: "json",
+                                success: function (result) {
+                                    vm.roleList = result;
+                                }
+                            })
+                        }
+                    })
+                }
             }
         })
     </script>

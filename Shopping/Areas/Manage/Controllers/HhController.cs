@@ -21,10 +21,18 @@ namespace Shopping.Areas.Manage.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 测试测试 @组长
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Ceshi()
+        {
+            return Content("2018年12月19日00:27:50   胡航  网站测试");
+        }
         #region/系统设置
 
         //  站点信息(主要功能：站点信息编辑)
-       
+
         //商城设置(主要功能：商城设置编辑)
 
         //账号设置(主要功能：账号设置编辑)

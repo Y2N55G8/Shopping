@@ -1,0 +1,130 @@
+﻿@model int?
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增用户</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+</head>
+<body>
+    <div id="max">
+        用户名:<input type="text" v-model.trim="username" />
+        <br />
+        用户邮箱:<input type="text" v-model.trim="email"/>
+        <br />
+        手机号码:<input type="text" v-model.trim="phone"/>
+        <br />
+        昵称:<input type="text" v-model.trim="nick"/>
+        <br />
+        密码:<input type="password" v-model="password" />
+        <br />
+        确认密码:<input type="password" v-model="passwordReg" />
+        <br />
+        用户等级:<select name="grade" v-model="grade">
+            <option value="1">铜牌会员</option>
+            <option value="2">银牌会员</option>
+            <option value="3">金牌会员</option>
+        </select>
+        <br />
+        管理员组:<select name="rgroup" v-model="rgroup">
+        <option v-for="rg in rgroups" :value="rg.RG_no">{{rg.RG_name}}<option>
+        </select>
+
+
+        <br /><br /><br />
+        支付积分:<input type="number" v-model="ji"/>
+
+        <br /><br /><br />
+        真实姓名:<input type="text" v-model="name"/>
+        <br />
+        性别:<input type="radio" name="sex" value="未知" />未知
+        <input type="radio" name="sex" value="男" />男
+        <input type="radio" name="sex" value="女" />女
+        <br />
+        身份证:<input type="text" v-model="identity"/>
+        <br />
+        出生日期:<input type="date" v-model="date"/>
+        <br />
+        所在区域:<select name="grade">
+            <option value="-1">请选择</option>
+        </select>
+        <select name="grade">
+            <option value="-1">请选择</option>
+        </select>
+        <select name="grade">
+            <option value="-1">请选择</option>
+        </select>
+        <br />
+        详细地址:<input type="text" v-model="address"/>
+        <br />
+        简介:<textarea v-model="intro"></textarea>
+
+
+        <br />
+        <button type="button" @@click="edit">提交</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#max",
+            data: {
+                username: "",
+                email: "",
+                phone:"",
+                nick: "",
+                password: "",
+                passwordReg: "",
+                grade: 1,
+                rgroup:"",
+                ji: 0,
+                name: "",
+                identity: "",
+                date: "",
+                address: "",
+                intro:"",
+                rgroups: JSON.parse('@Html.Raw(ViewData["infos"])').RGroups
+
+            }, methods: {
+                edit() {
+                    if (this.username == "") {
+                        alert("用户名不允许为空");
+                        return;
+                    } else if (this.password == "") {
+                        alert("密码不允许为空");
+                        return;
+                    } else if (this.password != this.passwordReg) {
+                        alert("两次密码不一致");
+                        return;
+                    } else if (this.nick == "") {
+                        alert("昵称不允许为空");
+                        return;
+                    }
+                    //判断新增还是修改
+                    if (~~'@Model' == 0) {
+                        //新增
+                        $.ajax({
+                            url: "InsertUser",
+                            type: "post",
+                            data: { username: vm.username, email: vm.email, phone: vm.phone, nick: vm.nick, password: vm.password, grade: vm.grade, rgroup: vm.rgroup, ji: vm.ji, name: vm.name, identity: vm.identity, date: vm.date, address: vm.address, intro: vm.intro },
+                            dataType:"text",
+                            success: (result) => {
+                                alert(result); 
+                            }
+                        })
+                    } else {
+                        //修改
+                        alert("开始修改");
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

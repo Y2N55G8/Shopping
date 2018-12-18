@@ -105,7 +105,7 @@ namespace Shopping.Controllers
             int index = Request["phone"] == null ? 1 : Convert.ToInt32(Request["index"]);
             //每页条目数
             int size = Request["size"] == null ? 0 : Convert.ToInt32(Request["size"]);
-            return Json(userService.GetUserList(grade,admin,username,email,phone,index,size));
+            return Json(userService.GetUsers(grade,admin,username,email,phone,index,size));
         }
         #endregion
 

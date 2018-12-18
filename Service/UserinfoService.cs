@@ -16,53 +16,64 @@ namespace Service
         IUnitofWork unit;
 
         IRepository<Userinfo> userRep;
-        IRepository<UserType> typeRep;
+        //IRepository<UserType> typeRep;
+        //IRepository<RoleGroup> RGroupRep;
 
         public UserinfoService(IUnitofWork unit) {
             this.unit = unit;
             this.userRep = unit.Repository<Userinfo>();
-            this.typeRep = unit.Repository<UserType>();
+            //this.typeRep = unit.Repository<UserType>();
+            //this.RGroupRep = unit.Repository<RoleGroup>();
         }
 
         /// <summary>
         /// 查询用户列表
         /// </summary>
         /// <param name="grade">等级</param>
-        /// <param name="admin">管理组</param>
+        /// <param name="roleGroup">管理组</param>
         /// <param name="username">用户名</param>
         /// <param name="email">邮箱</param>
         /// <param name="phone">电话</param>
         /// <returns></returns>
-        public decimal GetUserList(int grade, int admin, string username, string email, string phone,int index,int size)
+        public IEnumerable<Userinfo> GetUsers(int grade, int roleGroup, string username, string email, string phone,int index,int size)
         {
             var userDB = userRep.GetDbSet as IEnumerable<Userinfo>;
-            DbSet<UserType> typeDB = typeRep.GetDbSet;
 
             //等级
             if (grade != 0) {
-                //查询所对应等级的用户类型是否存在
-                var userType = typeDB.Where(t => t.UT_rank == grade).FirstOrDefault();
-                if (userType != null)
-                    userDB = userDB.Where(x => x.UT_no == userType.UT_no);
+                userDB = userDB.Where(x => x.UT_no == grade);
             }
-            //管理员分组
-            if (admin != 0) {
-                //查询该管理员分组是否存在
-                //var
+            //管理员组
+            if (roleGroup != 0) {
+                userDB = userDB.Where(x => x.RG_no == roleGroup);
             }
             //用户名
             if (!string.IsNullOrEmpty(username)) {
-
+                userDB = userDB.Where(x=>x.U_username.Contains(username));
             }
             //邮箱
             if (!string.IsNullOrEmpty(email)) {
-
+                userDB = userDB.Where(x => x.U_email.Contains(email));
             }
             //电话
             if (!string.IsNullOrEmpty(phone)) {
+                userDB = userDB.Where(x => x.U_tel.Contains(phone));
             }
+            //分页
+            userDB = userDB.Skip((index - 1) * size).Take(size);
 
-            return default(decimal);
+            return userDB.ToList();
+        }
+
+        /// <summary>
+        /// 新增用户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public int InsertUser(Userinfo user)
+        {
+            userRep.Insert(user);
+            return unit.Commit();
         }
     }
 }

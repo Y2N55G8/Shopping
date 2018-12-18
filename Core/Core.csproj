@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{43135A7E-910B-4B97-8F53-04F1ED365178}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mapping\AdminMap.cs" />
+    <Compile Include="Mapping\ClassSetMap.cs" />
+    <Compile Include="Mapping\DhlSetMap.cs" />
+    <Compile Include="Mapping\IntegralSetMap.cs" />
+    <Compile Include="Mapping\MallSetMap.cs" />
+    <Compile Include="Mapping\AttributeGroupMap.cs" />
+    <Compile Include="Mapping\AttributeMap.cs" />
+    <Compile Include="Mapping\AttributeValueMap.cs" />
+    <Compile Include="Mapping\BrandClassMap.cs" />
+    <Compile Include="Mapping\BrandMap.cs" />
+    <Compile Include="Mapping\ClassfiyMap.cs" />
+    <Compile Include="Mapping\RoleContactMap.cs" />
+    <Compile Include="Mapping\RoleGroupMap.cs" />
+    <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\ShangpinAttributeMap.cs" />
+    <Compile Include="Mapping\ShangpinMap.cs" />
+    <Compile Include="Mapping\ShangpinRelationMap.cs" />
+    <Compile Include="Mapping\ShangpinTimingMap.cs" />
+    <Compile Include="Mapping\ShangponImgMap.cs" />
+    <Compile Include="Mapping\SiteInfoMap.cs" />
+    <Compile Include="Mapping\UploadSetMap.cs" />
+    <Compile Include="Mapping\UserAddressMap.cs" />
+    <Compile Include="Mapping\UserinfoMap.cs" />
+    <Compile Include="Mapping\UserSetMap.cs" />
+    <Compile Include="Mapping\UserTypeMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IocInit.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\IocDBContext.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="UnitofWork\IUnitofWork.cs" />
+    <Compile Include="UnitofWork\UnitofWork.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{F535072C-CEEF-499E-93FA-38FCF6F3104D}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

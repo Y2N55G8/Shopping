@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RoleList</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+</head>
+<body>
+    <div id="max">
+        <button type="button" onclick="javascript:location.href='EditRoleGroup'">添加</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>管理操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(r,i) in roleList">
+                    <td>{{r.RG_no}}</td>
+                    <td>{{r.RG_name}}</td>
+                    <td>编辑|删除</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#max",
+            data: {
+                roleList : []
+            }, created() {
+                $.ajax({
+                    url: "GetRoleGroups",
+                    type: "post",
+                    datatype: "json",
+                    success: function (result) {
+                        vm.roleList = result;
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+</html>

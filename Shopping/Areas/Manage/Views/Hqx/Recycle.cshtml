@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Recycle</title>
+    <link href="~/Scripts/Hqx/easyui.css" rel="stylesheet" />
+    <link href="~/Scripts/Hqx/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/Hqx/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/Hqx/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/Hqx/easyui.validate.js"></script>
+</head>
+<body>
+    <div id="tb">
+        <div style="margin-bottom:5px;">
+            <span>商品分类:</span>
+            <select class="easyui-combobox">
+                <option value="value">全部分类</option>
+            </select>
+            <span>商品品牌:</span>
+            <select class="easyui-combobox">
+                <option value="value">全部品牌</option>
+            </select>
+            <span>商品名称:</span>
+            <input id="search-text" type="text" class="easyui-textbox" />
+            <button id="search" onclick="doSearch()" type="button" class="easyui-linkbutton">搜索</button>
+            <a id="btnReduction" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:'true'">批量还原</a>
+            <a id="btnDelete" onclick="del()" class="easyui-linkbutton" data-options="iconCls:'icon-mini-edit',plain:'true'">批量删除</a>
+        </div>
+    </div>
+    <div>
+        <table id="RecycleList"></table>
+    </div>
+    <script src="~/Scripts/Hqx/RecycleIndex.js"></script>
+</body>
+</html>

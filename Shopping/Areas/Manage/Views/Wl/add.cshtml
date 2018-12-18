@@ -1,0 +1,501 @@
+﻿
+@{
+    Layout = "~/Areas/Manage/_Shopping.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加商品</title>
+   
+
+</head>
+<body>
+    <div id="wrapper">
+
+        <div>
+            <h3>
+                <a href="#">商品管理</a>>><a href="#">添加商品</a>
+            </h3>
+            <h3 style="position:absolute; top:0px; right:0px;">
+                <a href="#">返回列表</a>
+            </h3>
+        </div>
+        <hr />
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+
+
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"> 基本信息</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">属性信息</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-3">辅助信息</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-4">详细描述</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+                                <div class="ibox-content">
+                                    <div class="form-horizontal">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1  control-label">商品名称</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" id="s_name" placeholder="请输入商品名称" class="form-control ">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">商品货号</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_number" placeholder="请输入商品货号" class="form-control"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">商品分类</label>
+
+                                            <div class="col-lg-10">
+                                                <button type="button" class="btn btn-w-m btn-info" id="c_no" data-toggle="modal" data-target="#myModal">选择分类</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">商品品牌</label>
+
+                                            <div class="col-lg-10">  <button type="button" id="b_no" class="btn btn-w-m btn-info" data-toggle="modal" data-target="#myModal1">选择品牌</button></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">成本价</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_cb" placeholder="" class="form-control" style="width:300px"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">市场价</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_sc" placeholder="" class="form-control" style="width:300px"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">本店价</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_bd" placeholder="" class="form-control" style="width:300px"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body" id="wl_panel">
+                                <p>请先选择商品类别</p>
+                               
+                            </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="ibox-content">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-1  control-label">重量</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" id="s_k" class="form-control ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">排序</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_px" class="form-control"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1  control-label">库存数量</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" id="s_kc" class="form-control ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">库存上限</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_max" class="form-control"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">库存警戒线</label>
+
+                                            <div class="col-lg-10"><input type="text" id="s_min" class="form-control"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">是否上架</label>
+
+                                            <div class="col-lg-10">
+                                                <div class="radio radio-info radio-inline">
+                                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="checked">
+                                                    <label for="inlineRadio1"> 是 </label>
+                                                </div>
+                                                <div class="radio radio-inline radio-info">
+                                                    <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                                    <label for="inlineRadio2"> 否 </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">商品标签</label>
+
+                                            <div class="col-lg-10">
+                                                <div class="checkbox checkbox-inline">
+                                                    <input type="checkbox" id="inlineCheckbox1" value="option1">
+                                                    <label for="inlineCheckbox1"> 热销 </label>
+                                                </div>
+                                                <div class="checkbox  checkbox-inline">
+                                                    <input type="checkbox" id="inlineCheckbox2" value="option1">
+                                                    <label for="inlineCheckbox2"> 精品 </label>
+                                                </div>
+                                                <div class="checkbox checkbox-inline">
+                                                    <input type="checkbox" id="inlineCheckbox3" value="option1">
+                                                    <label for="inlineCheckbox3"> 新品 </label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-4" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="wrapper wrapper-content">
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ibox float-e-margins">
+
+
+                                                <div class="ibox-tools">
+                                                    <a class="collapse-link">
+                                                        <i class="fa fa-chevron-up"></i>
+                                                    </a>
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                        <i class="fa fa-wrench"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-user">
+                                                        <li>
+                                                            <a href="#">Config option 1</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Config option 2</a>
+                                                        </li>
+                                                    </ul>
+                                                    <a class="close-link">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+
+                                                <div class="ibox-content no-padding">
+
+                                                    <div class="summernote" id="wl_textearh">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="wl_Save" class="btn btn-w-m btn-primary">提交</button>
+    </div>
+
+
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">分类名称</h4>
+                </div>
+                <div class="ibox-content">
+
+                    <div id="using_json"></div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">选择品牌</h4>
+
+                </div>
+                <div class="modal-body" id="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts{
+        <script src="~/Scripts/vue.js"></script>
+        <script>
+            
+            $(document).ready(function () {
+
+                $('.summernote').summernote();
+
+            });
+
+            window.onload = function load() {
+
+
+
+
+                //加载分类
+                $.ajax({
+                    url: "/Manage/Wl/Classfiy",
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (result) {
+                        $('#using_json').jstree({
+                            'core': {
+                                'data': result
+                            }
+                        });
+                    }
+                });
+                //加载品牌（后续加分页）
+                $.ajax({
+                    url: "/Manage/Wl/Brand",
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            $("#modal-body").append('<button type="button" value="' + result[i].B_no + '" data-dismiss="modal" class="btn btn-w-m btn-success" onclick="wl_dj(this)" style="margin-right:20px;margin-bottom:20px;">' + result[i].B_name + '</button>')
+                        }
+                    }
+                });
+
+            };
+            var num;
+            //选择分类属性
+            $('#using_json').on("changed.jstree", function (e, data) {
+                //console.log("The selected nodes are:");
+                //console.log(data.selected);
+                //alert('node.id is:' + data.node.id);
+                //alert('node.text is:' + data.node.text);
+                //console.log(data.node.original.cid);
+                if (data.node.original.cid == 0) {
+                    swal({
+                        title: "提示",
+                        text: "请选择具体分类"
+                    });
+
+                    return;
+                }
+                if (data.node.original.cid == -1) {
+                    $("#wl_panel").empty();
+                    $("#wl_panel").append(" <p>请先选择商品类别</p>");
+                    return;
+                }
+                var btn = document.getElementById("c_no")
+                btn.innerText = data.node.text;
+                btn.value = data.node.id;
+                $("#myModal").modal("hide");
+                // TODO: 传递给Tab
+                $.ajax({
+                    url: "/Manage/Wl/Attribute",
+                    type: "post",
+                    dataType: "JSON",
+                    data: { id: data.node.id },
+                    success: function (result) {
+
+                        $("#wl_panel").empty();
+                        for (var i = 0; i < result.length; i++) {
+                            //显示属性名称
+                            num = i + result[i].A_no;
+                           
+                            $("#wl_panel").append('<div class="form-group" id="group' + num + '"> <label class=" control-label">' + result[i].A_name + '</label></div>');
+
+                            console.log(num);
+                            console.log(result[i].A_type);
+                            if (result[i].A_type == 1) {
+                                //显示属性值选项
+                                $.ajax({
+                                    url: "/Manage/Wl/AttributeValue",
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    async: false,
+                                    data: { id: result[i].A_no },
+                                    success: function (result1) {
+
+                                        for (var j = 0; j < result.length; j++) {
+                                            console.log(result1[j]);
+                                        }
+                                       // $("#group" + num + "").append('<div>其他输入<input type="text" class="form-control></div>')
+                                    }
+                                })
+
+                            }
+                                
+                            if (result[i].A_type == 2) {
+                                //显示属性值选项
+                                $.ajax({
+                                    url: "/Manage/Wl/AttributeValue",
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    async: false,
+                                    data: { id: result[i].A_no },
+                                    success: function (result1) {
+                                        
+                                        for (var j = 0; j < result1.length; j++) {
+                                         
+                                            $("#group" + num + "").append(' <div class="radio radio-inline radio-info">'+
+                                                                             ' <input type="radio" name="radioInline' + i + '">' +
+                                                                             '<label for="inlineRadio' + j + '" >' + result1[j].AV_name + '</label >' +
+                                                                             '</div >');
+                                        }
+                                        $("#group" + num + "").append('<label class="control-label">其他输入</label><input type="text">')
+                                    }
+                                })
+
+                            }
+                            if (result[i].A_type == 3) {
+                                //显示属性值选项
+                                $.ajax({
+                                    url: "/Manage/Wl/AttributeValue",
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    async: false,
+                                    data: { id: result[i].A_no },
+                                    success: function (result1) {
+                                        console.log(result1);
+                                       
+                                        for (var j = 0; j < result.length; j++) {
+                                                $("#group" + num + "").append(' <div class="checkbox checkbox-inline">' +
+                                                ' <input type="checkbox" name="checkbox' + i + '">' +
+                                                '<label for="inlineCheckbox' + j + '" >' + result1[j].AV_name + '</label >' +
+                                                '</div >');
+                                        }
+                                       $("#group" + num + "").append('<div>其他输入<input type="text" class="form-control></div>')
+                                    }
+                                })
+
+                            }
+
+
+                        }
+                    }
+                })
+            });
+            function wl_dj(obj) {
+
+
+                var btn = document.getElementById("b_no")
+
+                btn.innerText = obj.innerText;
+                btn.value = obj.value;
+
+            };
+
+            $("#wl_Save").click(function () {
+                var S_isHot;
+                var S_flag;
+                var S_label = "";
+                var radio = document.getElementsByName("radioInline");
+                for (var i = 0; i < radio.length; i++) {
+                    if (radio[i].checked && i == 0) {
+                        S_flag = 1;
+                    }
+                    if (radio[i].checked && i == 1) {
+                        S_flag = 2;
+                    }
+                }
+
+
+
+                if ($("#inlineCheckbox1").is(':checked')) {
+                    S_isHot = 1;
+                    S_label += "1|"
+                } else {
+                    S_isHot = 2;
+                }
+                if ($("#inlineCheckbox2").is(':checked')) {
+                    S_label += "2|"
+                }
+                if ($("#inlineCheckbox3").is(':checked')) {
+                    S_label += "3|"
+                }
+                console.log(S_flag);
+                console.log(S_isHot);
+                console.log(S_label);
+                var text = document.getElementById("wl_textearh");
+
+                //$.ajax({
+                //    url: "/Manage/Wl/Save",
+                //    type: "POST",
+                //    dataType: "JSON",
+                //    data: {
+                //        S_name: $("#s_name").val(),
+                //        S_number: $("#s_number").val(),
+                //        C_no: $("#c_no").value,
+                //        B_no: $("#b_no").value,
+                //        S_cb: $("#s_cb").val(),
+                //        S_sc: $("#s_sc").val(),
+                //        S_bd: $("#s_bd").val(),
+                //        S_k: $("#s_k").val(),
+                //        S_kc: $("#s_kc").val(),
+                //        S_max: $("#s_max").val(),
+                //        S_min: $("#s_min").val(),
+                //        S_flag: S_flag,
+                //        S_label: S_label,
+                //        S_isHot: S_label
+                //    },
+                //    success: function (result) {
+
+
+                //        $.ajax({
+                //            url: "/Manage/Wl/SaveAttribute",
+                //            type: "POST",
+                //            dataType: "JSON",
+                //            data: {},
+                //            success: function (result) {
+                //            }
+                //        })
+                //    }
+                //})
+            })
+
+        </script>
+    }
+
+</body>
+</html>

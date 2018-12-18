@@ -316,6 +316,7 @@
     <Content Include="Content\images\图标.png" />
     <Content Include="Content\Hqx\personal.css" />
     <Content Include="Content\Hqx\Site.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\amazeui.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2173,13 +2174,14 @@
     <Content Include="Areas\Manage\Views\Hqx\Recycle.cshtml" />
     <Content Include="Areas\Manage\Views\Wl\add.cshtml" />
     <Content Include="Areas\Manage\Views\Wl\Index.cshtml" />
-    <Content Include="Areas\Manage\_Shopping.cshtml" />
+    <Content Include="Areas\Manage\Views\Shared\_Main.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\EditRoleGroup.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\RoleGroupList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\Discounts.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\EditUser.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\MyIntegral.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\UserList.cshtml" />
+    <Content Include="Areas\Manage\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2301,7 +2303,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Manage\Views\Hh\" />
-    <Folder Include="Areas\Manage\Views\Shared\" />
     <Folder Include="Areas\Manage\Views\Zza\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Areas\Member\Views\Cyc\" />

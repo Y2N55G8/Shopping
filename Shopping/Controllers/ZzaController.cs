@@ -13,5 +13,27 @@ namespace Shopping.Controllers
         {
             return View();
         }
+
+        //购物车
+        public ActionResult Shopping()
+        {
+            return View();
+        }
+        //无限级分类
+        public ActionResult Menu()
+        {
+            return View();
+        }
+
+        //分类管理
+        public ActionResult TypeSys()
+        {
+            return View();
+        }
+        //分类添加
+        public ActionResult TypeIns()
+        {
+            return View();
+        }
     }
 }

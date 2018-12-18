@@ -20,5 +20,25 @@ namespace IService
         /// <param name="name"></param>
         /// <returns></returns>
         int InsertGroup(string name,List<int> roles);
+        /// <summary>
+        /// 根据权限组id查询权限组
+        /// </summary>
+        /// <param name="RGid"></param>
+        /// <returns></returns>
+        RoleGroup GetRoleGroup(int RGid);
+        /// <summary>
+        /// 修改权限组信息
+        /// </summary>
+        /// <param name="RGid"></param>
+        /// <param name="name"></param>
+        /// <param name="roles"></param>
+        /// <returns></returns>
+        int UpdateRoleGroup(int RGid,string name,List<int> roles);
+        /// <summary>
+        /// 删除权限组信息
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        int DeleteGroupByGid(int gid);
     }
 }

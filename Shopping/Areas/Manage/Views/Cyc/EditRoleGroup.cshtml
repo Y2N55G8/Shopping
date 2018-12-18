@@ -15,7 +15,7 @@
 <body>
     <div id="max">
         <h2>@(Model == 0 ? "添加" : "修改")管理员组</h2>
-        名称：<input type="text" id="text" />
+        名称：<input type="text" id="text" v-model="Gname"/>
         <div>
             <span v-for="r in roleList"><input type="checkbox" :value="r.R_no" />{{r.R_name}}</span>
         </div>
@@ -34,35 +34,68 @@
         var vm = new Vue({
             el: "#max",
             data: {
-                roleList:[]
+                roleList: [],
+                Gname:""
             }, created() {
                 $.ajax({
                     url: "GetRoles",
                     type: "post",
                     dataType: "json",
-                    success: function (result) {
+                    success:(result)=> {
                         vm.roleList = result;
                     }
                 });
+                //要是不是新增用户
+                if (~~'@Model' != 0) {
+                    //获取其内的值及其对应权限组
+                    $.ajax({
+                        url: "GetRoleInfo",
+                        type: "post",
+                        data: {RGid:~~'@Model'},
+                        dataType: "json",
+                        success: (result) => {
+                            //console.log(result);
+                            vm.Gname = result.RGroup.RG_name;
+                            var rids = result.roleList;
+                            $("#max :checkbox").each((i, v) => {
+                                for (var i = 0, len = rids.length; i < len; i++) {
+                                    if (v.value == rids[i]) {
+                                        v.checked = true;
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
             }
         });
         function submit() {
-            var rid = new Array(0);
+            var rids = new Array(0);
             $("#max :checked").each((i, v) => {
-                rid.push($(v).val());
+                rids.push($(v).val());
             })
             if (~~'@Model' == 0) {
-                alert("afsdafsd");
+                //新增
                 $.ajax({
                     url: "InsertRoleGroup",
                     type: "post",
-                    data: { name: $("#text").val(), roles: JSON.stringify(rid) },
+                    data: { name: vm.Gname, roles: JSON.stringify(rids) },
                     dataType: "text",
-                    success: function (result) {
+                    success: (result)=> {
                         alert(result);
                     }
                 })
             } else {
+                //修改
+                $.ajax({
+                    url: "UpdateRoleGroup",
+                    type: "post",
+                    data: { RGid:~~'@Model',name: vm.Gname, roles: JSON.stringify(rids) },
+                    dataType: "text",
+                    success: (result) => {
+                        alert(result);
+                    }
+                });
             }
         }
     </script>

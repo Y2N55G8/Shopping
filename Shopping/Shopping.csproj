@@ -320,9 +320,6 @@
     <Content Include="Scripts\amazeui.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Background\_Shopping.cshtml" />
-    <Content Include="Areas\Background\Views\Wl\Index.cshtml" />
-    <Content Include="Areas\Background\Views\Wl\add.cshtml" />
     <Content Include="Scripts\Hqx\easyui-lang-zh_CN.js" />
     <Content Include="Scripts\Hqx\easyui.css" />
     <Content Include="Scripts\Hqx\easyui.validate.js" />
@@ -2171,9 +2168,6 @@
     <Content Include="电商后台\用户评论.html" />
     <Content Include="电商后台\系统设置.html" />
     <Content Include="电商后台\订单列表.html" />
-    <Content Include="Areas\Background\Views\Cyc\InsertUser.cshtml" />
-    <Content Include="Areas\Background\Views\Cyc\MyIntegral.cshtml" />
-    <Content Include="Areas\Background\Views\Cyc\Discounts.cshtml" />
     <Content Include="Areas\Member\Views\web.config" />
     <Content Include="Areas\Manage\Views\web.config" />
     <Content Include="Areas\Manage\Views\Hqx\Recycle.cshtml" />
@@ -2182,6 +2176,10 @@
     <Content Include="Areas\Manage\_Shopping.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\EditRoleGroup.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\RoleGroupList.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\Discounts.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\EditUser.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\MyIntegral.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\UserList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2229,11 +2227,8 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Hqx\Address.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Hqx\Collection.cshtml" />
     <Content Include="Views\Shared\_UserCentered.cshtml" />
-    <Content Include="Views\Hqx\ShopCart.cshtml" />
     <Content Include="Static_Full_Version汉化\css\bootstrap.css.map" />
     <Content Include="Static_Full_Version汉化\css\bootstrap.min.css.map" />
     <Content Include="Static_Full_Version汉化\css\plugins\bootstrap-rtl\bootstrap-rtl.css.map" />
@@ -2294,8 +2289,8 @@
     <Content Include="Static_Full_Version汉化\pdf\example.pdf" />
     <Content Include="Views\Cyc\Information.cshtml" />
     <Content Include="Views\Cyc\Safety.cshtml" />
-    <Content Include="Views\Hqx\Information.cshtml" />
-    <Content Include="Views\Hqx\Safety.cshtml" />
+    <Content Include="Views\Zza\TypeSys.cshtml" />
+    <Content Include="Views\Zza\Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2317,8 +2312,8 @@
     <Folder Include="Areas\Member\Views\Zza\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Hh\" />
+    <Folder Include="Views\Hqx\" />
     <Folder Include="Views\Wl\" />
-    <Folder Include="Views\Zza\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

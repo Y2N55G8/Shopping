@@ -12,6 +12,19 @@ namespace Core.Repository
     {
         protected override void Seed(IocDBContext context)
         {
+            #region 用户
+            List<Userinfo> userList = new List<Userinfo>()
+            {
+                new Userinfo(){ U_username = "Cyc",U_password = "111",U_nick = "昵称o",U_ji = 0,U_tel="110",U_email = "ford-chu@qq.com",U_birth = DateTime.Now,U_regtime = DateTime.Now,U_logintime = DateTime.Now,UT_no = 1,UA_no = 1,C_no=1 },
+                new Userinfo(){ U_username = "Wl",U_password = "111",U_nick = "吴晓磊",U_ji = 0,U_tel="110",U_email = "111@qq.com",U_birth = DateTime.Now,U_regtime = DateTime.Now,U_logintime = DateTime.Now,UT_no = 1,UA_no = 1,C_no=1 },
+                new Userinfo(){ U_username = "Hh",U_password = "111",U_nick = "胡晓航",U_ji = 0,U_tel="110",U_email = "112@qq.com",U_birth = DateTime.Now,U_regtime = DateTime.Now,U_logintime = DateTime.Now,UT_no = 1,UA_no = 1,C_no=1 },
+                new Userinfo(){ U_username = "Hqx",U_password = "111",U_nick = "胡晓星",U_ji = 0,U_tel="110",U_email = "113@qq.com",U_birth = DateTime.Now,U_regtime = DateTime.Now,U_logintime = DateTime.Now,UT_no = 1,UA_no = 1,C_no=1 },
+                new Userinfo(){ U_username = "Zza",U_password = "111",U_nick = "郑泽安",U_ji = 0,U_tel="110",U_email = "114@qq.com",U_birth = DateTime.Now,U_regtime = DateTime.Now,U_logintime = DateTime.Now,UT_no = 1,UA_no = 1,C_no=1 }
+            };
+            context.Set<Userinfo>().AddRange(userList);
+            #endregion
+
+
             #region 权限
             List<Role> roleList = new List<Role>()
             {
@@ -41,8 +54,6 @@ namespace Core.Repository
             };
             context.Set<Role>().AddRange(roleList);
             #endregion
-
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Areas/Manage/_Shopping.cshtml";
 }
 
 <!DOCTYPE html>
@@ -17,6 +17,15 @@
     <script src="~/Scripts/Hqx/easyui.validate.js"></script>
 </head>
 <body>
+    <div>
+        <h3>
+            <a href="#">商品管理</a>>><a href="#">回收站</a>
+        </h3>
+        <h3 style="position:absolute; top:0px; right:0px;">
+            <a href="#">返回列表</a>
+        </h3>
+    </div>
+    <hr />
     <div id="tb">
         <div style="margin-bottom:5px;">
             <span>商品分类:</span>
@@ -37,6 +46,8 @@
     <div>
         <table id="RecycleList"></table>
     </div>
+
     <script src="~/Scripts/Hqx/RecycleIndex.js"></script>
+
 </body>
 </html>

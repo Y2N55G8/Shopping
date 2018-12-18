@@ -14,11 +14,11 @@ namespace Shopping.Areas.Manage.Controllers
                 new Shangpin{S_no=1,S_name="电视",S_isHot=1,S_myprice=100,S_count=1000},
                 new Shangpin{S_no=2,S_name="手机",S_isHot=3,S_myprice=200,S_count=500},
                 new Shangpin{S_no=3,S_name="电脑",S_isHot=2,S_myprice=300,S_count=600},
-                new Shangpin{S_no=3,S_name="平板",S_isHot=1,S_myprice=400,S_count=700},
+                new Shangpin{S_no=4,S_name="平板",S_isHot=1,S_myprice=400,S_count=700},
                 new Shangpin{S_no=5,S_name="电视",S_isHot=1,S_myprice=500,S_count=8000},
                 new Shangpin{S_no=6,S_name="手机",S_isHot=3,S_myprice=600,S_count=900},
                 new Shangpin{S_no=7,S_name="电脑",S_isHot=2,S_myprice=700,S_count=1000},
-                new Shangpin{S_no=7,S_name="平板",S_isHot=1,S_myprice=800,S_count=1100}
+                new Shangpin{S_no=8,S_name="平板",S_isHot=1,S_myprice=800,S_count=1100}
             };
         List<Shangpin> list2 = new List<Shangpin>();
         // GET: Manage/Hqx
@@ -69,5 +69,15 @@ namespace Shopping.Areas.Manage.Controllers
             var obj = new { total = t, rows = r.ToArray() };
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// 评论
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Comment()
+        {
+            return View();
+        }
+
     }
 }

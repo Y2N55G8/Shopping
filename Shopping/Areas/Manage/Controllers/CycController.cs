@@ -133,7 +133,6 @@ namespace Shopping.Areas.Manage.Controllers
         #endregion
         #endregion
 
-
         #region 用户管理
 
 
@@ -153,6 +152,7 @@ namespace Shopping.Areas.Manage.Controllers
             return View();
         }
 
+        #region 新增用户
         /// <summary>
         /// 编辑用户
         /// </summary>

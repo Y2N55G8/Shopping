@@ -15,7 +15,7 @@ namespace Shopping.Areas.Manage.Controllers
         IRoleGroupService RGroupService;
         IRoleContactService contactService;
         IUserinfoService userService;
-        public CycController(IUserinfoService userService,IRoleService roleService, IRoleGroupService RGroupService,IRoleContactService contactService)
+        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService)
         {
             this.userService = userService;
             this.roleService = roleService;
@@ -23,6 +23,44 @@ namespace Shopping.Areas.Manage.Controllers
             this.contactService = contactService;
         }
 
+        #region 促销活动
+
+
+
+        #region 视图
+
+        #region 赠品促销管理
+        #region 促销列表
+        /// <summary>
+        /// 赠品促销列表/促销列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PromotionList()
+        {
+            return View();
+        }
+        #endregion
+        #region 赠品列表
+        public ActionResult Gift()
+        {
+            return View();
+        }
+        #endregion
+        #endregion
+
+        #region 满赠促销
+
+        #region 添加促销
+        public ActionResult InsertSales() {
+            return View();
+        }
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        #endregion
 
 
         #region 管理员权限
@@ -60,12 +98,11 @@ namespace Shopping.Areas.Manage.Controllers
         /// 获取所有权限
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetRoles() {
+        public ActionResult GetRoles()
+        {
             return Json(roleService.GetRoles());
         }
         #endregion
-
-
 
         #region 管理权限组增删改
         #region 新增管理权限组
@@ -79,14 +116,16 @@ namespace Shopping.Areas.Manage.Controllers
             List<int> roles = JsonConvert.DeserializeObject<List<int>>(Request["roles"]);
 
 
-            if (!string.IsNullOrEmpty(name)) {
-                return Content(RGroupService.InsertGroup(name,roles).ToString());
+            if (!string.IsNullOrEmpty(name))
+            {
+                return Content(RGroupService.InsertGroup(name, roles).ToString());
             }
             return Content("0");
         }
         #endregion
         #region 修改管理权限组
-        public ActionResult UpdateRoleGroup() {
+        public ActionResult UpdateRoleGroup()
+        {
 
             //获取要修改的权限组编号
             int RGid = Convert.ToInt32(Request["RGid"]);
@@ -95,12 +134,13 @@ namespace Shopping.Areas.Manage.Controllers
             //获取权限组所拥有的权限编号
             List<int> roles = JsonConvert.DeserializeObject<List<int>>(Request["roles"]);
 
-            int i = RGroupService.UpdateRoleGroup(RGid,name,roles);
+            int i = RGroupService.UpdateRoleGroup(RGid, name, roles);
             return Content(i.ToString());
         }
         #endregion
         #region 删除管理权限组
-        public ActionResult DeleteRoleGroups() {
+        public ActionResult DeleteRoleGroups()
+        {
             int gid = Convert.ToInt32(Request["RGid"]);
             int result = RGroupService.DeleteGroupByGid(gid);
             return Content(result.ToString());
@@ -133,17 +173,16 @@ namespace Shopping.Areas.Manage.Controllers
         #endregion
         #endregion
 
-        #region 用户管理
-
 
         #region 视图
         /// <summary>
         /// 用户列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult UserList() {
+        public ActionResult UserList()
+        {
             //用户信息
-            ViewData["Userinfos"] = JsonConvert.SerializeObject(userService.GetUsers(0,0,null,null,null,1,10));
+            ViewData["Userinfos"] = JsonConvert.SerializeObject(userService.GetUsers(0, 0, null, null, null, 1, 10));
             //管理员组
             var RGroups = RGroupService.GetRoleGroups().ToList();
             RGroups.Add(new RoleGroup() { RG_no = 0, RG_name = "非管理员" });
@@ -165,7 +204,8 @@ namespace Shopping.Areas.Manage.Controllers
             ViewData["infos"] = JsonConvert.SerializeObject(new { RGroups = RGroups });
             //判断是新增还是修改
             string edit = Request["edit"];
-            if (string.IsNullOrEmpty(edit)) {
+            if (string.IsNullOrEmpty(edit))
+            {
                 //新增
                 return View(0);
             }
@@ -175,7 +215,8 @@ namespace Shopping.Areas.Manage.Controllers
 
 
         #region 新增用户
-        public ActionResult InsertUser() {
+        public ActionResult InsertUser()
+        {
             string username = Request["username"];
             string email = Request["email"];
             string phone = Request["phone"];
@@ -190,13 +231,14 @@ namespace Shopping.Areas.Manage.Controllers
             string address = Request["address"];
             string intro = Request["intro"];
 
-            int result = userService.InsertUser(new Userinfo() {
+            int result = userService.InsertUser(new Userinfo()
+            {
                 U_username = username,
                 U_email = email,
                 U_tel = phone,
                 U_nick = nick,
                 U_password = password,
-                UT_no = Convert.ToInt32(string.IsNullOrEmpty(grade)?"0":grade),
+                UT_no = Convert.ToInt32(string.IsNullOrEmpty(grade) ? "0" : grade),
                 RG_no = Convert.ToInt32(string.IsNullOrEmpty(rgroup) ? "0" : rgroup),
                 U_ji = Convert.ToInt32(string.IsNullOrEmpty(ji) ? "0" : ji),
                 U_name = name,
@@ -213,10 +255,11 @@ namespace Shopping.Areas.Manage.Controllers
         }
         #endregion
         #region 获取用户信息
-        public ActionResult GetUsers() {
-            
+        public ActionResult GetUsers()
+        {
+
             //用户信息
-            return Content(JsonConvert.SerializeObject(userService.GetUsers(string.IsNullOrEmpty(Request["grade"])?0:Convert.ToInt32((Request["grade"])), string.IsNullOrEmpty(Request["rgroup"]) ? 0 : Convert.ToInt32((Request["rgroup"])), Request["username"], Request["email"],Request["phone"], 1, 10)));
+            return Content(JsonConvert.SerializeObject(userService.GetUsers(string.IsNullOrEmpty(Request["grade"]) ? 0 : Convert.ToInt32((Request["grade"])), string.IsNullOrEmpty(Request["rgroup"]) ? 0 : Convert.ToInt32((Request["rgroup"])), Request["username"], Request["email"], Request["phone"], 1, 10)));
         }
         #endregion
 

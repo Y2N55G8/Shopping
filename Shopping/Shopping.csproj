@@ -2186,6 +2186,9 @@
     <Content Include="Areas\Manage\Views\Cyc\MyIntegral.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\UserList.cshtml" />
     <Content Include="Areas\Manage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\PromotionList.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\Gift.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\InsertSales.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

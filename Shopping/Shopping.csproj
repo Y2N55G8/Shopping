@@ -2181,7 +2181,6 @@
     <Content Include="Areas\Manage\Views\Wl\add.cshtml" />
     <Content Include="Areas\Manage\Views\Wl\Index.cshtml" />
     <Content Include="Areas\Manage\Views\Shared\_Main.cshtml" />
-    <Content Include="Areas\Manage\Views\Cyc\EditRoleGroup.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\RoleGroupList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\Discounts.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\EditUser.cshtml" />
@@ -2197,6 +2196,8 @@
     <Content Include="Areas\Manage\Views\Cyc\InsertComplimentary.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\CuxiaoList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\InsertConsumption.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\UserinfoList.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\EditRGroup.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2223,6 +2224,8 @@
     <Compile Include="Areas\Manage\Controllers\ZzaController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Areas\Manage\Models\CuxiaoModel.cs" />
+    <Compile Include="Areas\Manage\Models\RoleGroupModel.cs" />
+    <Compile Include="Areas\Manage\Models\UserinfoModel.cs" />
     <Compile Include="Areas\Manage\Models\wl\Clfiy.cs" />
     <Compile Include="Areas\Member\Controllers\CycController.cs" />
     <Compile Include="Areas\Member\Controllers\HhController.cs" />

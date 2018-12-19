@@ -29,6 +29,10 @@ namespace Shopping
 
             Mapper.Initialize(x =>
             {
+                //用户
+                x.CreateMap<Userinfo, UserinfoModel>();
+                //权限管理组
+                x.CreateMap<RoleGroup, RoleGroupModel>();
                 //促销
                 x.CreateMap<Cuxiao, CuxiaoModel>();
             });

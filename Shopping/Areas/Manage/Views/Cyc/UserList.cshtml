@@ -1,18 +1,11 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Areas/Manage/Views/Shared/_Main.cshtml";
 }
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UserList</title>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/vue.js"></script>
-</head>
-<body>
+
     <div id="max">
         会员等级:<select v-model="grade">
             <option value="1">铜牌会员</option>
@@ -92,5 +85,3 @@
             }
         });
     </script>
-</body>
-</html>

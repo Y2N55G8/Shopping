@@ -19,7 +19,7 @@ namespace IService
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        int InsertGroup(string name,List<int> roles);
+        int InsertGroup(string name,Array roles);
         /// <summary>
         /// 根据权限组id查询权限组
         /// </summary>
@@ -33,7 +33,7 @@ namespace IService
         /// <param name="name"></param>
         /// <param name="roles"></param>
         /// <returns></returns>
-        int UpdateRoleGroup(int RGid,string name,List<int> roles);
+        int UpdateRoleGroup(int RGid,string name,Array rids);
         /// <summary>
         /// 删除权限组信息
         /// </summary>

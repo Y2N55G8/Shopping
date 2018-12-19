@@ -18,7 +18,7 @@ namespace Shopping.Areas.Manage.Controllers
         IRoleContactService contactService;
         IUserinfoService userService;
         ICuxiaoService cuxiaoService;
-        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService,ICuxiaoService cuxiaoService)
+        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService, ICuxiaoService cuxiaoService)
         {
             this.userService = userService;
             this.roleService = roleService;
@@ -29,6 +29,60 @@ namespace Shopping.Areas.Manage.Controllers
 
         #region 视图
 
+        #region 用户
+        /// <summary>
+        /// 用户列表
+        /// </summary>
+        /// <returns></returns>
+        //public ActionResult UserList()
+        //{
+        //    //用户信息
+        //    ViewData["Userinfos"] = JsonConvert.SerializeObject(userService.GetUsers(0, 0, null, null, null, 1, 10));
+        //    //管理员组
+        //    var RGroups = RGroupService.GetRoleGroups().ToList();
+        //    RGroups.Add(new RoleGroup() { RG_no = 0, RG_name = "非管理员" });
+        //    ViewData["infos"] = JsonConvert.SerializeObject(new { RGroups = RGroups });
+
+        //    return View();
+        //}
+
+        /// <summary>
+        /// 用户列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult UserinfoList()
+        {
+            //用户信息
+            var list = Mapper.Map<IEnumerable<UserinfoModel>>(userService.GetUsers(0, 0, null, null, null, 1, 10));
+            //管理员组
+            ViewData["RGroups"] = new SelectList(RGroupService.GetRoleGroups(), "RG_no", "RG_name");
+            return View(list);
+        }
+
+        ///// <summary>
+        ///// 编辑用户
+        ///// </summary>
+        ///// <returns></returns>
+        //public ActionResult EditUser()
+        //{
+        //    //管理员组
+        //    var RGroups = RGroupService.GetRoleGroups().ToList();
+        //    RGroups.Add(new RoleGroup() { RG_no = 0, RG_name = "非管理员" });
+        //    ViewData["infos"] = JsonConvert.SerializeObject(new { RGroups = RGroups });
+        //    //判断是新增还是修改
+        //    string edit = Request["edit"];
+        //    if (string.IsNullOrEmpty(edit))
+        //    {
+        //        //新增
+        //        return View(0);
+        //    }
+        //    //修改
+        //    return View(1);
+        //}
+
+        #endregion
+
         #region 管理员权限
         /// <summary>
         /// 管理员权限列表
@@ -36,24 +90,55 @@ namespace Shopping.Areas.Manage.Controllers
         /// <returns></returns>
         public ActionResult RoleGroupList()
         {
-            return View();
+            var list = Mapper.Map<IEnumerable<RoleGroupModel>>(RGroupService.GetRoleGroups());
+            return View(list);
         }
 
         /// <summary>
-        /// 管理员组编辑
+        /// 编辑管理组
         /// </summary>
         /// <returns></returns>
-        public ActionResult EditRoleGroup()
+        [HttpGet]
+        public ActionResult EditRGroup(int? id)
         {
-            //判断是新增还是修改
-            object edit = Request["edit"];
-            if (edit == null)
-                return View(0);
+            ViewData["Roles"] = roleService.GetRoles();
+            //修改
+            if (id == null)
+                return View();
+            //修改
             else
-                //判断是否存在该管理组
-                //不存在则返回回去
-                return View(Convert.ToInt32(edit));
+            {
+                //获取指定权限组
+                var RGroup = Mapper.Map<RoleGroupModel>(RGroupService.GetRoleGroup(Convert.ToInt32(id)));
+                //获取指定权限组下的所有权限
+                ViewData["RolesArr"] = contactService.GetRidByGid(Convert.ToInt32(id));
+                return View(RGroup);
+            }
         }
+        [HttpPost]
+        public ActionResult EditRGroup(RoleGroupModel model)
+        {
+            ViewData["Roles"] = roleService.GetRoles();
+            //验证
+            if (!ModelState.IsValid)
+                return View(model);
+            //获取权限
+            int[] roles = Array.ConvertAll(Request["Role"].Split(new string[] { ",", "false" }, StringSplitOptions.RemoveEmptyEntries), s => Convert.ToInt32(s));
+            int result = 0;
+            //修改
+            if (model.RG_no != 0)
+            {
+                result = RGroupService.UpdateRoleGroup(model.RG_no, model.RG_name, roles);
+            }
+            //新增
+            else
+                result = RGroupService.InsertGroup(model.RG_name, roles);
+            if (result != 0)
+                return RedirectToAction("RoleGroupList");
+            return View(model);
+        }
+
+
         #endregion
 
         #region 促销活动
@@ -91,11 +176,13 @@ namespace Shopping.Areas.Manage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult InsertConsumption() {
+        public ActionResult InsertConsumption()
+        {
             return View();
         }
         [HttpPost]
-        public ActionResult InsertConsumption(CuxiaoModel cuxiaoModel) {
+        public ActionResult InsertConsumption(CuxiaoModel cuxiaoModel)
+        {
             if (!ModelState.IsValid)
                 return View(cuxiaoModel);
             int result = cuxiaoService.InsertCuxiao(Mapper.Map<Cuxiao>(cuxiaoModel));
@@ -130,7 +217,8 @@ namespace Shopping.Areas.Manage.Controllers
         #region 促销活动
 
         #region 添加促销
-        public ActionResult InsertCuxiao() {
+        public ActionResult InsertCuxiao()
+        {
             string cid = Request["cid"];
             string name = Request["name"];
             string starttime = Request["starttime"];
@@ -184,53 +272,11 @@ namespace Shopping.Areas.Manage.Controllers
         #region 管理员权限
 
 
-        
 
-        #region 获取所有权限
-        /// <summary>
-        /// 获取所有权限
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetRoles()
-        {
-            return Json(roleService.GetRoles());
-        }
-        #endregion
+
 
         #region 管理权限组增删改
-        #region 新增管理权限组
-        /// <summary>
-        /// 新增管理权限组
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult InsertRoleGroup()
-        {
-            string name = Request["name"];
-            List<int> roles = JsonConvert.DeserializeObject<List<int>>(Request["roles"]);
 
-
-            if (!string.IsNullOrEmpty(name))
-            {
-                return Content(RGroupService.InsertGroup(name, roles).ToString());
-            }
-            return Content("0");
-        }
-        #endregion
-        #region 修改管理权限组
-        public ActionResult UpdateRoleGroup()
-        {
-
-            //获取要修改的权限组编号
-            int RGid = Convert.ToInt32(Request["RGid"]);
-            //获取权限组名
-            string name = Request["name"];
-            //获取权限组所拥有的权限编号
-            List<int> roles = JsonConvert.DeserializeObject<List<int>>(Request["roles"]);
-
-            int i = RGroupService.UpdateRoleGroup(RGid, name, roles);
-            return Content(i.ToString());
-        }
-        #endregion
         #region 删除管理权限组
         public ActionResult DeleteRoleGroups()
         {
@@ -239,72 +285,18 @@ namespace Shopping.Areas.Manage.Controllers
             return Content(result.ToString());
         }
         #endregion
-        #region 获取指定权限组及其所拥有的权限
-        public ActionResult GetRoleInfo()
-        {
-            //获取权限组的编号
-            int RGid = Convert.ToInt32(Request["RGid"]);
-            //获取指定权限组
-            RoleGroup RGroup = RGroupService.GetRoleGroup(RGid);
-            //获取指定权限组下的所有权限
-            IEnumerable<int> roleList = contactService.GetRidByGid(RGid);
-            return Json(new { RGroup = RGroup, roleList = roleList });
-        }
-        #endregion
         #endregion
 
 
-        #region 获取所有管理权限
-        /// <summary>
-        /// 获取所有管理权限组
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetRoleGroups()
-        {
-            return Json(RGroupService.GetRoleGroups());
-        }
-        #endregion
+
         #endregion
 
 
         #region 视图
-        /// <summary>
-        /// 用户列表
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult UserList()
-        {
-            //用户信息
-            ViewData["Userinfos"] = JsonConvert.SerializeObject(userService.GetUsers(0, 0, null, null, null, 1, 10));
-            //管理员组
-            var RGroups = RGroupService.GetRoleGroups().ToList();
-            RGroups.Add(new RoleGroup() { RG_no = 0, RG_name = "非管理员" });
-            ViewData["infos"] = JsonConvert.SerializeObject(new { RGroups = RGroups });
 
-            return View();
-        }
 
         #region 新增用户
-        /// <summary>
-        /// 编辑用户
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult EditUser()
-        {
-            //管理员组
-            var RGroups = RGroupService.GetRoleGroups().ToList();
-            RGroups.Add(new RoleGroup() { RG_no = 0, RG_name = "非管理员" });
-            ViewData["infos"] = JsonConvert.SerializeObject(new { RGroups = RGroups });
-            //判断是新增还是修改
-            string edit = Request["edit"];
-            if (string.IsNullOrEmpty(edit))
-            {
-                //新增
-                return View(0);
-            }
-            //修改
-            return View(1);
-        }
+
 
 
         #region 新增用户

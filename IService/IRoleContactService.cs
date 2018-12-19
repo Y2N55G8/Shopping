@@ -13,6 +13,6 @@ namespace IService
         /// </summary>
         /// <param name="gid"></param>
         /// <returns></returns>
-        IEnumerable<int> GetRidByGid(int gid);
+        Array GetRidByGid(int gid);
     }
 }

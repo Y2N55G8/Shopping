@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Shopping.Areas.Manage.Models.UserinfoModel>
+
+@{
+    ViewBag.Title = "UserinfoList";
+    Layout = "~/Areas/Manage/Views/Shared/_Main.cshtml";
+}
+
+<h2>UserinfoList</h2>
+
+<p>
+    会员等级:<select>
+        <option value="1">铜牌会员</option>
+        <option value="2">银牌会员</option>
+        <option value="3">金牌会员</option>
+    </select>
+    管理员组：@Html.DropDownList("RGroups", ViewData["RGroups"] as IEnumerable<SelectListItem>,"全部组")
+    用户名:<input type="text" />
+    邮箱:<input type="text" />
+    手机:<input type="text" />
+    <button type="button">搜索</button>
+    @Html.ActionLink("新增", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.U_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_email)
+            @Html.DisplayNameFor(model => model.U_tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_nick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_ji)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_regtime)
+            @Html.DisplayNameFor(model => model.U_logintime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UT_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RG_no)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_email)<br />
+                @Html.DisplayFor(modelItem => item.U_tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_nick)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_ji)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_regtime)<br />
+                @Html.DisplayFor(modelItem => item.U_logintime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UT_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RG_no)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+</table>

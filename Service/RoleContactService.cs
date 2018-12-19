@@ -25,9 +25,9 @@ namespace Service
         /// </summary>
         /// <param name="gid"></param>
         /// <returns></returns>
-        public IEnumerable<int> GetRidByGid(int gid)
+        public Array GetRidByGid(int gid)
         {
-            return contactRep.Get(x => x.RG_no == gid, "", null).Select(x=>x.R_no);
+            return contactRep.Get(x => x.RG_no == gid, "", null).Select(x=>x.R_no).ToArray();
         }
     }
 }

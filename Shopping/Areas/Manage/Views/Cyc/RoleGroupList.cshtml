@@ -1,81 +1,38 @@
-﻿
+﻿@model IEnumerable<Shopping.Areas.Manage.Models.RoleGroupModel>
+
 @{
-    Layout = null;
+    ViewBag.Title = "RoleGroupList";
+    Layout = "~/Areas/Manage/Views/Shared/_Main.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>RoleGroupList</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>RoleList</title>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/vue.js"></script>
-</head>
-<body>
-    <div id="max">
-        <button type="button" onclick="javascript:location.href='EditRoleGroup'">添加</button>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>编号</th>
-                    <th>名称</th>
-                    <th>管理操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(r,i) in roleList">
-                    <td>{{r.RG_no}}</td>
-                    <td>{{r.RG_name}}</td>
-                    <td>
-                    <a href="javascript:" @@click="update(r.RG_no)">编辑</a>|
-                    <a href="javascript:" @@click="remove(r.RG_no)">删除</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <script>
-        var vm = new Vue({
-            el: "#max",
-            data: {
-                roleList : []
-            }, created() {
-                $.ajax({
-                    url: "GetRoleGroups",
-                    type: "post",
-                    datatype: "json",
-                    success: function (result) {
-                        vm.roleList = result;
-                    }
-                })
-            }, methods: {
-                update(RG_no) {
-                    location.href = `EditRoleGroup?edit=${RG_no}`;
-                },
-                remove(RG_no) {
-                    $.ajax({
-                        url: "DeleteRoleGroups",
-                        type: "post",
-                        data: { RGid: RG_no },
-                        datatype: "json",
-                        success: function (result) {
-                            alert(result);
+<p>
+    @Html.ActionLink("新增", "EditRGroup")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RG_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RG_name)
+        </th>
+        <th></th>
+    </tr>
 
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RG_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RG_name)
+        </td>
+        <td>
+            @Html.ActionLink("修改", "EditRGroup", new {  id=item.RG_no  }) 
+        </td>
+    </tr>
+}
 
-                            $.ajax({
-                                url: "GetRoleGroups",
-                                type: "post",
-                                datatype: "json",
-                                success: function (result) {
-                                    vm.roleList = result;
-                                }
-                            })
-                        }
-                    })
-                }
-            }
-        })
-    </script>
-</body>
-</html>
+</table>

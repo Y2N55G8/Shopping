@@ -42,7 +42,7 @@ namespace Service
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public int InsertGroup(string name,List<int> roles)
+        public int InsertGroup(string name,Array roles)
         {
             var RGroup= RGroupRep.Get(null, "", x => x.OrderByDescending(y => y.RG_no)).FirstOrDefault();
             int RGid = 1;
@@ -52,7 +52,7 @@ namespace Service
             RGroupRep.Insert(new RoleGroup { RG_no = RGid, RG_name = name });
             foreach (var rid in roles)
             {
-                contactRep.Insert(new RoleContact() { RG_no = RGid, R_no = rid });
+                contactRep.Insert(new RoleContact() { RG_no = RGid, R_no = Convert.ToInt32(rid) });
             }
             return unit.Commit();
         }
@@ -63,7 +63,7 @@ namespace Service
         /// <param name="name"></param>
         /// <param name="roles"></param>
         /// <returns></returns>
-        public int UpdateRoleGroup(int RGid, string name, List<int> roles)
+        public int UpdateRoleGroup(int RGid, string name,Array rids)
         {
             try
             {
@@ -72,11 +72,25 @@ namespace Service
                 {
                     RG_name = name
                 });
-                //修改权限组的关联权限
-                contactRep.GetDbSet.Where(x => x.RG_no == RGid).Delete();
-                foreach (var rid in roles)
+                Array oldRids = contactRep.Get(x=>x.RG_no == RGid,"",null).Select(x=>x.R_no).ToArray();
+                //删除旧权限
+                foreach (var old in oldRids)
                 {
-                    contactRep.Insert(new RoleContact() { RG_no = RGid, R_no = rid });
+                    if (Array.IndexOf(rids,old) < 0) {
+                        contactRep.GetDbSet.Where(x => x.RG_no == RGid && x.R_no == Convert.ToInt32(old)).Delete();
+                    }
+                }
+                //新增新权限
+                foreach (var newId in rids)
+                {
+                    if (Array.IndexOf(oldRids,newId) < 0)
+                    {
+                        contactRep.Insert(new RoleContact()
+                        {
+                            RG_no = RGid,
+                            R_no = Convert.ToInt32(newId)
+                        });
+                    }
                 }
                 unit.Commit();
                 return 1;

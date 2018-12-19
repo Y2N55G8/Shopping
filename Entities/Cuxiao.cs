@@ -16,6 +16,10 @@ namespace Entities
         /// </summary>
         public int C_no { get; set; }
         /// <summary>
+        /// 活动名称
+        /// </summary>
+        public string C_name { get; set; }
+        /// <summary>
         /// 促销的商品
         /// </summary>
         public int S_no { get; set; }

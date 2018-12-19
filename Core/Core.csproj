@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Mapping\AdminMap.cs" />
     <Compile Include="Mapping\ClassSetMap.cs" />
+    <Compile Include="Mapping\CuxiaoMap.cs" />
     <Compile Include="Mapping\DhlSetMap.cs" />
     <Compile Include="Mapping\IntegralSetMap.cs" />
     <Compile Include="Mapping\MallSetMap.cs" />

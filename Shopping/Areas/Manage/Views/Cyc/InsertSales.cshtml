@@ -6,21 +6,31 @@
 
 <h2>满赠促销/添加促销</h2>
 <div id="max">
-    活动名称：<input type="text"/>
-    <br/>
-    活动时间：<input type="date"/>至<input type="date"/>
-    <br/>
-    最低用户等级：<select name="grade">
-    <option value="1">铜牌会员</option>
-    <option value="2">银牌会员</option>
-    <option value="3">金牌会员</option>
+    商品名称:<select>
+        <option value="0">选择商品</option>
     </select>
-    <br/>
-    活动额度<input type="number">元
-    <br/>
-    补充额度<input type="number">元
-    <br/>
-    状态:<input type="radio" name="state" value="start" checked/>启动
+    活动名称：
+    <input type="text" />
+    <br />
+    活动时间：
+    <input type="date" />至
+    <input type="date" />
+    <br />
+    最低用户等级：
+    <select name="grade">
+        <option value="1">铜牌会员</option>
+        <option value="2">银牌会员</option>
+        <option value="3">金牌会员</option>
+    </select>
+    <br />
+    活动额度
+    <input type="number">元
+    <br />
+    补充额度
+    <input type="number">元
+    <br />
+    状态:
+    <input type="radio" name="state" value="start" checked />启动
     <input type="radio" name="state" value="end">暂停
     <button type="button">提交</button>
 </div>

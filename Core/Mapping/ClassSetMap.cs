@@ -15,10 +15,8 @@ namespace Core.Mapping
         {
             //主键
             HasKey(x => x.Cs_id);
-
             Property(x => x.Cs_name).IsRequired();
             Property(x => x.Cs_register).IsRequired();
-
             Property(x => x.Cs_login).IsRequired();
            
             Property(x => x.Cs_email).IsRequired();

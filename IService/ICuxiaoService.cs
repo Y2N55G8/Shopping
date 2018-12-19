@@ -15,5 +15,10 @@ namespace IService
         /// <param name="cx"></param>
         /// <returns></returns>
         int InsertCuxiao(Cuxiao cx);
+        /// <summary>
+        /// 获取促销列表
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Cuxiao> GetChuxiao();
     }
 }

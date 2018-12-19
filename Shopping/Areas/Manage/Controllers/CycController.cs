@@ -1,6 +1,8 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
 using IService;
 using Newtonsoft.Json;
+using Shopping.Areas.Manage.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,106 @@ namespace Shopping.Areas.Manage.Controllers
             this.contactService = contactService;
             this.cuxiaoService = cuxiaoService;
         }
+
+        #region 视图
+
+        #region 管理员权限
+        /// <summary>
+        /// 管理员权限列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RoleGroupList()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 管理员组编辑
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EditRoleGroup()
+        {
+            //判断是新增还是修改
+            object edit = Request["edit"];
+            if (edit == null)
+                return View(0);
+            else
+                //判断是否存在该管理组
+                //不存在则返回回去
+                return View(Convert.ToInt32(edit));
+        }
+        #endregion
+
+        #region 促销活动
+        /// <summary>
+        /// 促销列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CuxiaoList()
+        {
+            var list = cuxiaoService.GetChuxiao();
+            return View(list);
+        }
+
+        /// <summary>
+        /// 赠品促销/促销列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PromotionList()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 赠品促销/添加促销
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult InsertComplimentary()
+        {
+            //获取商品列表
+            return View();
+        }
+
+        /// <summary>
+        /// 满赠促销/添加促销
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult InsertConsumption() {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult InsertConsumption(CuxiaoModel cuxiaoModel) {
+            if (!ModelState.IsValid)
+                return View(cuxiaoModel);
+            int result = cuxiaoService.InsertCuxiao(Mapper.Map<Cuxiao>(cuxiaoModel));
+            if (result != 0)
+                return RedirectToAction("CuxiaoList");
+            return View(cuxiaoModel);
+        }
+        #endregion
+
+        #endregion
+
+        #region 方法
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         #region 促销活动
 
@@ -61,16 +163,6 @@ namespace Shopping.Areas.Manage.Controllers
         #region 视图
 
         #region 赠品促销管理
-        #region 促销列表
-        /// <summary>
-        /// 赠品促销列表/促销列表
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult PromotionList()
-        {
-            return View();
-        }
-        #endregion
         #region 赠品列表
         public ActionResult Gift()
         {
@@ -81,23 +173,6 @@ namespace Shopping.Areas.Manage.Controllers
 
         #region 满赠促销
 
-        #region 添加促销
-        /// <summary>
-        /// 添加促销
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult InsertSales() {
-            //获取商品列表
-
-            return View();
-        }
-        #endregion
-
-        #region 促销列表
-        public ActionResult CuxiaoList() {
-            return CuxiaoList();
-        }
-        #endregion
 
         #endregion
 
@@ -109,32 +184,7 @@ namespace Shopping.Areas.Manage.Controllers
         #region 管理员权限
 
 
-        #region 视图
-        /// <summary>
-        /// 管理员权限列表
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult RoleGroupList()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 管理员组编辑
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult EditRoleGroup()
-        {
-            //判断是新增还是修改
-            object edit = Request["edit"];
-            if (edit == null)
-                return View(0);
-            else
-                //判断是否存在该管理组
-                //不存在则返回回去
-                return View(Convert.ToInt32(edit));
-        }
-        #endregion
+        
 
         #region 获取所有权限
         /// <summary>

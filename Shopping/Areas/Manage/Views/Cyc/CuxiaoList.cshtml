@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Entities.Cuxiao>
+
+@{
+    ViewBag.Title = "CuxiaoList";
+    Layout = "~/Areas/Manage/Views/Shared/_Main.cshtml";
+}
+
+<h2>CuxiaoList</h2>
+
+<p>
+    活动名称：<input type="text">    活动时间：<input type="date"> <button type="button">搜索</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            活动编号
+        </th>
+        <th>
+            活动名称
+        </th>
+        <th>
+            活动额度
+        </th>
+        <th>
+            补充额度
+        </th>
+        <th>
+            开始时间
+        </th>
+        <th>
+            结束时间
+        </th>
+
+        <th>
+            活动状态
+        </th>
+        <th>
+            管理操作
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_activity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_supplement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_starttime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_endtime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_flag)
+        </td>
+        <td>
+            @Html.ActionLink("主商品列表", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("赠品列表", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("编辑", "Delete", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("删除", "Details", new { /* id=item.PrimaryKey */ }) 
+        </td>
+    </tr>
+}
+
+</table>

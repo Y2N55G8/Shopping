@@ -1,9 +1,12 @@
-﻿using Core.Repository;
+﻿using AutoMapper;
+using Core.Repository;
 using Core.UnitofWork;
+using Entities;
 using IService;
 using Ninject;
 using Ninject.Web.Common.WebHost;
 using Service;
+using Shopping.Areas.Manage.Models;
 using System.Data.Entity;
 using System.Reflection;
 using System.Web;
@@ -23,6 +26,12 @@ namespace Shopping
             base.OnApplicationStarted();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Mapper.Initialize(x =>
+            {
+                //促销
+                x.CreateMap<Cuxiao, CuxiaoModel>();
+            });
         }
         /// <summary>
         /// 绑定

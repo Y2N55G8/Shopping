@@ -13,12 +13,22 @@ namespace Service
     public class CuxiaoService:ICuxiaoService
     {
         IUnitofWork unit;
-        IRepository<Cuxiao> CuxiaoRep;
+        IRepository<Cuxiao> cuxiaoRep;
 
         public CuxiaoService(IUnitofWork unit) {
             this.unit = unit;
-            CuxiaoRep = unit.Repository<Cuxiao>();
+            cuxiaoRep = unit.Repository<Cuxiao>();
         }
+
+        /// <summary>
+        /// 获取促销列表
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Cuxiao> GetChuxiao()
+        {
+            return cuxiaoRep.Get();
+        }
+
         /// <summary>
         /// 新增促销
         /// </summary>
@@ -26,7 +36,7 @@ namespace Service
         /// <returns></returns>
         public int InsertCuxiao(Cuxiao cx)
         {
-            CuxiaoRep.Insert(cx);
+            cuxiaoRep.Insert(cx);
             return unit.Commit();
         }
     }

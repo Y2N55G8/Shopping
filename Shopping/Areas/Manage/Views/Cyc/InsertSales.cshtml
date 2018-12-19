@@ -32,6 +32,19 @@
     状态:
     <input type="radio" name="state" value="start" checked />启动
     <input type="radio" name="state" value="end">暂停
-    <button type="button">提交</button>
+    <button type="button" @@click="submit">提交</button>
 </div>
+@section Scripts{
+    <script>
+        var vm = new Vue({
+            el: "#max",
+            data: {
 
+            }, methods: {
+                submit(){
+                    alert("提交");
+                }
+            }
+        })
+    </script>
+}

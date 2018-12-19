@@ -16,7 +16,7 @@ namespace Shopping.Areas.Manage.Models
         /// 主键
         /// </summary>
         [Display(Name ="用户编号")]
-        public int U_no { get; set; }
+        public int? U_no { get; set; }
         /// <summary>
         /// 用户名
         /// </summary>
@@ -27,6 +27,11 @@ namespace Shopping.Areas.Manage.Models
         /// </summary>
         [Display(Name = "密码")]
         public string U_password { get; set; }
+        /// <summary>
+        /// 确认密码
+        /// </summary>
+        [Display(Name = "确认密码")]
+        public string U_passwordReg { get; set; }
         /// <summary>
         /// 昵称
         /// </summary>
@@ -50,6 +55,7 @@ namespace Shopping.Areas.Manage.Models
         /// <summary>
         /// 出生日期
         /// </summary>
+        [Display(Name = "出生日期")]
         public DateTime? U_birth { get; set; }
         /// <summary>
         /// 支付积分
@@ -90,7 +96,7 @@ namespace Shopping.Areas.Manage.Models
         /// 最后一次登录时间
         /// </summary>
         [Display(Name = "最后一次登录时间")]
-        public DateTime U_logintime { get; set; }
+        public DateTime? U_logintime { get; set; }
         /// <summary>
         /// 用户类型编号
         /// </summary>
@@ -100,7 +106,7 @@ namespace Shopping.Areas.Manage.Models
         /// 默认地址(外键)
         /// </summary>
         [Display(Name = "默认地址")]
-        public int UA_no { get; set; }
+        public int? UA_no { get; set; }
         /// <summary>
         /// 地区(外键)
         /// </summary>

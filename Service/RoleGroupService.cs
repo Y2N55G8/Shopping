@@ -77,7 +77,8 @@ namespace Service
                 foreach (var old in oldRids)
                 {
                     if (Array.IndexOf(rids,old) < 0) {
-                        contactRep.GetDbSet.Where(x => x.RG_no == RGid && x.R_no == Convert.ToInt32(old)).Delete();
+                        int iOid = Convert.ToInt32(old);
+                        contactRep.GetDbSet.Where(x => x.RG_no == RGid && x.R_no == iOid).Delete();
                     }
                 }
                 //新增新权限
@@ -95,7 +96,7 @@ namespace Service
                 unit.Commit();
                 return 1;
             }
-            catch (Exception) {
+            catch (Exception ex) {
                 return 0;
             }
         }

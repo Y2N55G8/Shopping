@@ -16,7 +16,7 @@ namespace Shopping.Areas.Manage.Models
         /// 主键
         /// </summary>
         [Display(Name = "编号")]
-        public int RG_no { get; set; }
+        public int? RG_no { get; set; }
         /// <summary>
         /// 权限组组名
         /// </summary>

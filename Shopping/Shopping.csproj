@@ -2183,13 +2183,9 @@
     <Content Include="Areas\Manage\Views\Shared\_Main.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\RoleGroupList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\Discounts.cshtml" />
-    <Content Include="Areas\Manage\Views\Cyc\EditUser.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\MyIntegral.cshtml" />
-    <Content Include="Areas\Manage\Views\Cyc\UserList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\Discounts.cshtml" />
-    <Content Include="Areas\Manage\Views\Cyc\EditUser.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\MyIntegral.cshtml" />
-    <Content Include="Areas\Manage\Views\Cyc\UserList.cshtml" />
     <Content Include="Areas\Manage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\PromotionList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\Gift.cshtml" />
@@ -2198,6 +2194,9 @@
     <Content Include="Areas\Manage\Views\Cyc\InsertConsumption.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\UserinfoList.cshtml" />
     <Content Include="Areas\Manage\Views\Cyc\EditRGroup.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\EditUser.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\UserList.cshtml" />
+    <Content Include="Areas\Manage\Views\Cyc\EditUserinfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

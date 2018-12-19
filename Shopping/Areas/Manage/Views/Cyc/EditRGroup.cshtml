@@ -15,7 +15,7 @@
     <h4>RoleGroupModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.Hidden("RG_no",Model == null?0:Model.RG_no)
+    @Html.HiddenFor(x=>x.RG_no)
     <div class="form-group">
         @Html.LabelFor(model => model.RG_name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

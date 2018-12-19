@@ -18,7 +18,7 @@
     邮箱:<input type="text" />
     手机:<input type="text" />
     <button type="button">搜索</button>
-    @Html.ActionLink("新增", "Create")
+    @Html.ActionLink("新增", "EditUserinfo")
 </p>
 <table class="table">
     <tr>
@@ -81,7 +81,7 @@
                 @Html.DisplayFor(modelItem => item.RG_no)
             </td>
             <td>
-                @Html.ActionLink("编辑", "Edit", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("编辑", "EditUserinfo", new { id=item.U_no })
             </td>
         </tr>
     }

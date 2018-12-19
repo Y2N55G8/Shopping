@@ -74,7 +74,7 @@ namespace Entities
         /// <summary>
         /// 最后一次登录时间
         /// </summary>
-        public DateTime U_logintime { get; set; }
+        public DateTime? U_logintime { get; set; }
         /// <summary>
         /// 用户类型编号
         /// </summary>

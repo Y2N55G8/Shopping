@@ -59,27 +59,49 @@ namespace Shopping.Areas.Manage.Controllers
             ViewData["RGroups"] = new SelectList(RGroupService.GetRoleGroups(), "RG_no", "RG_name");
             return View(list);
         }
-
-        ///// <summary>
-        ///// 编辑用户
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult EditUser()
-        //{
-        //    //管理员组
-        //    var RGroups = RGroupService.GetRoleGroups().ToList();
-        //    RGroups.Add(new RoleGroup() { RG_no = 0, RG_name = "非管理员" });
-        //    ViewData["infos"] = JsonConvert.SerializeObject(new { RGroups = RGroups });
-        //    //判断是新增还是修改
-        //    string edit = Request["edit"];
-        //    if (string.IsNullOrEmpty(edit))
-        //    {
-        //        //新增
-        //        return View(0);
-        //    }
-        //    //修改
-        //    return View(1);
-        //}
+        /// <summary>
+        /// 编辑用户
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditUserinfo(int? id)
+        {
+            //管理员组
+            ViewData["RGroups"] = new SelectList(RGroupService.GetRoleGroups(), "RG_no", "RG_name");
+            //新增
+            if (id == null)
+                return View();
+            //修改
+            else
+            {
+                var user = userService.GetUserById(Convert.ToInt32(id));
+                return View(Mapper.Map<UserinfoModel>(user));
+            }
+        }
+        [HttpPost]
+        public ActionResult EditUserinfo(UserinfoModel model)
+        {
+            //管理员组
+            ViewData["RGroups"] = new SelectList(RGroupService.GetRoleGroups(), "RG_no", "RG_name");
+            //验证
+            if (!ModelState.IsValid)
+                return View(model);
+            int result = 0;
+            //修改
+            if (model.U_no != null)
+            {
+                result = userService.UpdateUser(Mapper.Map<Userinfo>(model));
+            }
+            //新增
+            else
+            {
+                model.U_regtime = DateTime.Now;
+                result = userService.InsertUser(Mapper.Map<Userinfo>(model));
+            }
+            if (result != 0)
+                return RedirectToAction("UserinfoList");
+            return View(model);
+        }
 
         #endregion
 
@@ -102,7 +124,7 @@ namespace Shopping.Areas.Manage.Controllers
         public ActionResult EditRGroup(int? id)
         {
             ViewData["Roles"] = roleService.GetRoles();
-            //修改
+            //新增
             if (id == null)
                 return View();
             //修改
@@ -126,9 +148,9 @@ namespace Shopping.Areas.Manage.Controllers
             int[] roles = Array.ConvertAll(Request["Role"].Split(new string[] { ",", "false" }, StringSplitOptions.RemoveEmptyEntries), s => Convert.ToInt32(s));
             int result = 0;
             //修改
-            if (model.RG_no != 0)
+            if (model.RG_no != null)
             {
-                result = RGroupService.UpdateRoleGroup(model.RG_no, model.RG_name, roles);
+                result = RGroupService.UpdateRoleGroup(Convert.ToInt32(model.RG_no), model.RG_name, roles);
             }
             //新增
             else
@@ -194,9 +216,6 @@ namespace Shopping.Areas.Manage.Controllers
 
         #endregion
 
-        #region 方法
-
-        #endregion
 
 
 

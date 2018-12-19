@@ -31,5 +31,19 @@ namespace IService
         /// <param name="user"></param>
         /// <returns></returns>
         int InsertUser(Userinfo user);
+
+        /// <summary>
+        /// 根据编号查询用户
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        Userinfo GetUserById(int id);
+
+        /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="userinfo"></param>
+        /// <returns></returns>
+        int UpdateUser(Userinfo userinfo);
     }
 }

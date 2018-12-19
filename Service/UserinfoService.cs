@@ -1,6 +1,7 @@
 ﻿using Core.Repository;
 using Core.UnitofWork;
 using Entities;
+using EntityFramework.Extensions;
 using IService;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,15 @@ namespace Service
             this.userRep = unit.Repository<Userinfo>();
             //this.typeRep = unit.Repository<UserType>();
             //this.RGroupRep = unit.Repository<RoleGroup>();
+        }
+        /// <summary>
+        /// 根据编号查询用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Userinfo GetUserById(int id)
+        {
+            return userRep.Get(x => x.U_no == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -74,6 +84,38 @@ namespace Service
         {
             userRep.Insert(user);
             return unit.Commit();
+        }
+        /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="userinfo"></param>
+        /// <returns></returns>
+        public int UpdateUser(Userinfo userinfo)
+        {
+            try
+            {
+                userRep.GetDbSet.Where(x => x.U_no == userinfo.U_no).Update(x => new Userinfo()
+                {
+                    U_username = userinfo.U_username,
+                    U_email = userinfo.U_email,
+                    U_tel = userinfo.U_tel,
+                    U_nick = userinfo.U_nick,
+                    U_password = userinfo.U_password,
+                    UT_no = userinfo.UT_no,
+                    RG_no = userinfo.RG_no,
+                    U_ji = userinfo.U_ji,
+                    U_name = userinfo.U_name,
+                    U_sex = userinfo.U_sex,
+                    U_birth = userinfo.U_birth,
+                    C_no = userinfo.C_no,
+                    U_address = userinfo.U_address,
+                    U_about = userinfo.U_about
+                });
+                return 1;
+            }
+            catch (Exception) {
+                return 0;
+            }
         }
     }
 }

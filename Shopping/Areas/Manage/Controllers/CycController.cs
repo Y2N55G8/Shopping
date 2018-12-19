@@ -15,12 +15,14 @@ namespace Shopping.Areas.Manage.Controllers
         IRoleGroupService RGroupService;
         IRoleContactService contactService;
         IUserinfoService userService;
-        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService,ICuxiaoService)
+        ICuxiaoService cuxiaoService;
+        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService,ICuxiaoService cuxiaoService)
         {
             this.userService = userService;
             this.roleService = roleService;
             this.RGroupService = RGroupService;
             this.contactService = contactService;
+            this.cuxiaoService = cuxiaoService;
         }
 
         #region 促销活动
@@ -37,10 +39,20 @@ namespace Shopping.Areas.Manage.Controllers
             string flag = Request["flag"];
 
 
-            Cuxiao
+            Cuxiao cuxiao = new Cuxiao()
+            {
+                S_no = Convert.ToInt32(cid),
+                C_name = name,
+                C_starttime = Convert.ToDateTime(starttime),
+                C_endtime = Convert.ToDateTime(endtime),
+                UT_no = Convert.ToInt32(grade),
+                C_activity = Convert.ToInt32(alimit),
+                C_supplement = Convert.ToInt32(slimit),
+                C_flag = Convert.ToInt32(flag)
+            };
+            int result = cuxiaoService.InsertCuxiao(cuxiao);
 
-
-            return Content("");
+            return Content(result.ToString());
         }
         #endregion
 

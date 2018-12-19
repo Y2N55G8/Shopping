@@ -36,9 +36,13 @@ namespace Entities
         /// </summary>
         public int UT_no { get; set; }
         /// <summary>
-        /// 配额上限
+        /// 活动额度
         /// </summary>
-        public int C_max { get; set; }
+        public int C_activity { get; set; }
+        /// <summary>
+        /// 补充额度
+        /// </summary>
+        public int C_supplement { get; set; }
         /// <summary>
         /// 活动状态(1启用 2停止)
         /// </summary>

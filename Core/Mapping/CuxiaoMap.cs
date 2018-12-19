@@ -24,8 +24,10 @@ namespace Core.Mapping
             Property(x => x.C_endtime);
             //最低用户类型
             Property(x => x.UT_no);
-            //匹配上限
-            Property(x => x.C_max);
+            //活动额度
+            Property(x => x.C_activity);
+            //补充额度
+            Property(x => x.C_supplement);
             //活动状态(1启用 2停止)
             Property(x => x.C_flag);
 

@@ -6,32 +6,34 @@
 
 <h2>满赠促销/添加促销</h2>
 <div id="max">
-    商品名称:<select>
+    商品:<select v-model="cid">
         <option value="0">选择商品</option>
     </select>
     活动名称：
-    <input type="text" />
+    <input type="text" v-model="name"/>
     <br />
     活动时间：
-    <input type="date" />至
-    <input type="date" />
+    <input type="date" v-model="starttime"/>至
+    <input type="date" v-model="endtime"/>
     <br />
     最低用户等级：
-    <select name="grade">
+    <select name="grade" v-model="grade">
         <option value="1">铜牌会员</option>
         <option value="2">银牌会员</option>
         <option value="3">金牌会员</option>
     </select>
     <br />
     活动额度
-    <input type="number">元
+    <input type="number" v-model="alimit">元
     <br />
     补充额度
-    <input type="number">元
+    <input type="number" v-model="slimit">元
     <br />
     状态:
-    <input type="radio" name="state" value="start" checked />启动
-    <input type="radio" name="state" value="end">暂停
+    <div id="flag">
+        <input type="radio" name="state" value="1" checked />启动
+        <input type="radio" name="state" value="2">暂停
+    </div>
     <button type="button" @@click="submit">提交</button>
 </div>
 @section Scripts{
@@ -39,10 +41,34 @@
         var vm = new Vue({
             el: "#max",
             data: {
-
+                //商品id
+                cid: "",
+                //活动名称
+                name: "",
+                //开始时间
+                starttime: "",
+                //结束时间
+                endtime: "",
+                //等级
+                grade: "",
+                //活动额度
+                alimit: "",
+                //补充额度
+                slimit:""
             }, methods: {
-                submit(){
-                    alert("提交");
+                //提交
+                submit() {
+                    $.ajax({
+                        url: "InsertCuxiao",
+                        data: { cid:vm.cid, name: vm.name, starttime: vm.starttime, endtime: vm.endtime,grade:vm.grade,alimit:vm.alimit,slimit:vm.slimit,flag:$("#flag :checked").val()},
+                        type: "post",
+                        dataType: "text",
+                        success: (result) => {
+                            alert(result);
+                        }
+                    })
+                    alert(vm.name + "" + vm.starttime + "" + vm.endtime + "" + vm.grade + "" + vm.Alimit+""+vm.Slimit)
+                    alert("正在提交");
                 }
             }
         })

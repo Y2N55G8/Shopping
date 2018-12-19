@@ -15,7 +15,7 @@ namespace Shopping.Areas.Manage.Controllers
         IRoleGroupService RGroupService;
         IRoleContactService contactService;
         IUserinfoService userService;
-        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService)
+        public CycController(IUserinfoService userService, IRoleService roleService, IRoleGroupService RGroupService, IRoleContactService contactService,ICuxiaoService)
         {
             this.userService = userService;
             this.roleService = roleService;
@@ -25,7 +25,24 @@ namespace Shopping.Areas.Manage.Controllers
 
         #region 促销活动
 
+        #region 促销
+        public ActionResult InsertCuxiao() {
+            string cid = Request["cid"];
+            string name = Request["name"];
+            string starttime = Request["starttime"];
+            string endtime = Request["endtime"];
+            string grade = Request["grade"];
+            string alimit = Request["alimit"];
+            string slimit = Request["slimit"];
+            string flag = Request["flag"];
 
+
+            Cuxiao
+
+
+            return Content("");
+        }
+        #endregion
 
         #region 视图
 

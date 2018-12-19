@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributeGroupServer.cs" />
+    <Compile Include="CuxiaoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleContactService.cs" />
     <Compile Include="RoleGroupService.cs" />

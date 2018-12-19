@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAttributeGroup.cs" />
+    <Compile Include="ICuxiaoService.cs" />
     <Compile Include="IRoleContactService.cs" />
     <Compile Include="IRoleGroupService.cs" />
     <Compile Include="IRoleService.cs" />

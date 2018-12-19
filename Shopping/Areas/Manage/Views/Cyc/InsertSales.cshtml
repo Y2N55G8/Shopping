@@ -10,11 +10,11 @@
         <option value="0">选择商品</option>
     </select>
     活动名称：
-    <input type="text" v-model="name"/>
+    <input type="text" v-model="name" />
     <br />
     活动时间：
-    <input type="date" v-model="starttime"/>至
-    <input type="date" v-model="endtime"/>
+    <input type="date" v-model="starttime" />至
+    <input type="date" v-model="endtime" />
     <br />
     最低用户等级：
     <select name="grade" v-model="grade">
@@ -54,21 +54,19 @@
                 //活动额度
                 alimit: "",
                 //补充额度
-                slimit:""
+                slimit: ""
             }, methods: {
                 //提交
                 submit() {
                     $.ajax({
                         url: "InsertCuxiao",
-                        data: { cid:vm.cid, name: vm.name, starttime: vm.starttime, endtime: vm.endtime,grade:vm.grade,alimit:vm.alimit,slimit:vm.slimit,flag:$("#flag :checked").val()},
+                        data: { cid: vm.cid, name: vm.name, starttime: vm.starttime, endtime: vm.endtime, grade: vm.grade, alimit: vm.alimit, slimit: vm.slimit, flag: $("#flag :checked").val() },
                         type: "post",
                         dataType: "text",
                         success: (result) => {
                             alert(result);
                         }
                     })
-                    alert(vm.name + "" + vm.starttime + "" + vm.endtime + "" + vm.grade + "" + vm.Alimit+""+vm.Slimit)
-                    alert("正在提交");
                 }
             }
         })

@@ -51,6 +51,8 @@ namespace Core.Repository
             modelBuilder.Configurations.Add(new ShangponImgMap());
             //分类
             modelBuilder.Configurations.Add(new ClassfiyMap());
+            //促销
+            modelBuilder.Configurations.Add(new CuxiaoMap());
         }
     }
 }

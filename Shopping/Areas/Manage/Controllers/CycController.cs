@@ -27,7 +27,7 @@ namespace Shopping.Areas.Manage.Controllers
 
         #region 促销活动
 
-        #region 促销
+        #region 添加促销
         public ActionResult InsertCuxiao() {
             string cid = Request["cid"];
             string name = Request["name"];
@@ -56,6 +56,8 @@ namespace Shopping.Areas.Manage.Controllers
         }
         #endregion
 
+
+
         #region 视图
 
         #region 赠品促销管理
@@ -80,8 +82,18 @@ namespace Shopping.Areas.Manage.Controllers
         #region 满赠促销
 
         #region 添加促销
+        /// <summary>
+        /// 添加促销
+        /// </summary>
+        /// <returns></returns>
         public ActionResult InsertSales() {
             return View();
+        }
+        #endregion
+
+        #region 促销列表
+        public ActionResult CuxiaoList() {
+            return CuxiaoList();
         }
         #endregion
 

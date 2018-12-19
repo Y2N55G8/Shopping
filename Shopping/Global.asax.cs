@@ -42,6 +42,7 @@ namespace Shopping
             kernel.Bind<IAttributeGroup>().To<AttributeGroupServer>();
             kernel.Bind<IShangpin>().To<ShangpinServer>();
             kernel.Bind<IUserCenterService>().To<UserCenterService>();
+            kernel.Bind<ICuxiaoService>().To<CuxiaoService>();
             return kernel;
         }
     }

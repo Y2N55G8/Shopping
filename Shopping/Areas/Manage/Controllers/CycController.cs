@@ -87,6 +87,8 @@ namespace Shopping.Areas.Manage.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult InsertSales() {
+            //获取商品列表
+
             return View();
         }
         #endregion
